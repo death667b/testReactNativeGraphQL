@@ -16,7 +16,7 @@ export default class ListPage extends React.Component {
             <View>
                 <ScrollView>
                     <View style={this.viewStyle}>
-                        // Content goes here !!
+                        <Text>// Content goes here !!</ Text>
                     </ View>
                 </ ScrollView>
                 <Button onPress={this.createPost} title='Create Post'/>
