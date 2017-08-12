@@ -1,8 +1,10 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import ApolloClient, {createNetworkInterface} from 'apollo-client';
-import {ApolloProvidor} from 'react-apollo';
-import {nativeHistory, Route, Router} from 'react-router-native';
+import {ApolloProvider} from 'react-apollo';
+import {NativeRouter, Route, Switch} from 'react-router-native';
+import ListPage from './components/ListPage';
+import CreatePage from './components/CreatePage';
 
 const networkInterface = createNetworkInterface({uri: 'https://api.graph.cool/simple/v1/cj68ly79e4bxr01084hnjvhtw'})
 
@@ -18,11 +20,14 @@ const container = {
 export default class App extends React.Component {
     render() {
         return (
-            <View style={container}>
-                <Text>Open up App.js to start working on your app!</Text>
-                <Text>Changes you make will automatically reload.</Text>
-                <Text>Shake your phone to open the developer menu.</Text>
-            </View>
-        );
+            <ApolloProvider client={client}>
+                <NativeRouter>
+                    <Switch>
+                    <Route path='/' component={ListPage} />
+                    <Route path='/create' component={CreatePage} />
+                    </ Switch>
+                </ NativeRouter>
+            </ ApolloProvider>
+        )
     }
 }
