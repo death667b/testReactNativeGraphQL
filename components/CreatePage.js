@@ -23,7 +23,6 @@ class CreatePage extends React.Component {
     }
 
     render() {
-        console.log('sdvlskfv df vbdf b dfv df vd v router')
         return (
             <View>
                   <TextInput
