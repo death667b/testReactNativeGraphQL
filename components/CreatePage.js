@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, TextInput, Button, Image, Text} from 'react-native';
 import {withRouter} from 'react-router-native';
+import {graphql} from 'react-apollo';
+import gqp from 'graphql-tag';
 
 export default class CreatePage extends React.Component {
 
