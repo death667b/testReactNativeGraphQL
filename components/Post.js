@@ -14,6 +14,7 @@ export default class Post extends React.Component {
     }
 
     render() {
+        console.log('img', this.props.post.imageUrl)
         return (
             <View style={this.styleComponent}>
                 <Image
