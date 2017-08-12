@@ -1,8 +1,18 @@
 import React from 'react';
 import {ScrollView, View, Text, Button} from 'react-native';
 import {withRouter} from 'react-router-native';
+import Post from './Post';
+import {graphql} from 'react-apollo';
+import gql from 'graphql-tag';
 
-export default class ListPage extends React.Component {
+const FeedQuery = gql`query allPosts {
+    allPosts(orderBy: createdAt_DESC) {
+      id
+      imageUrl
+      description
+    }
+  }`
+class ListPage extends React.Component {
 
     viewStyle = {
         flex: 1,
@@ -12,11 +22,17 @@ export default class ListPage extends React.Component {
     };
 
     render() {
+        if (this.props.data.loading) {
+            return (<Text>Loading...</ Text>);
+        }
+
         return (
             <View>
                 <ScrollView>
                     <View style={this.viewStyle}>
-                        <Text>// Content goes here !!</ Text>
+                        {this.props.data.allPosts.reverse().map((post) => 
+                            <Post key={post.id} post={post} />
+                        )}
                     </ View>
                 </ ScrollView>
                 <Button onPress={this.createPost} title='Create Post'/>
@@ -31,3 +47,5 @@ export default class ListPage extends React.Component {
             .push('/create');
     }
 }
+
+export default withRouter(graphql(FeedQuery)(ListPage));
