@@ -1,6 +1,6 @@
 import React from 'react';
-import { ScrollView, View, Text, Button } from 'react-native';
-import { withRouter } from 'react-router-native';
+import {ScrollView, View, Text, Button} from 'react-native';
+import {withRouter} from 'react-router-native';
 
 class ListPage extends React.Component {
 
@@ -8,23 +8,26 @@ class ListPage extends React.Component {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     };
 
     render() {
         return (
             <View>
                 <ScrollView>
-                    <View style={ this.viewStyle } >
+                    <View style={this.viewStyle}>
                         // Content goes here !!
                     </ View>
                 </ ScrollView>
-                <Button onPress={ this.createPost } title='Create Post' />
+                <Button onPress={this.createPost} title='Create Post'/>
             </View>
         )
     }
 
     createPost = () => {
-        this.props.router.push('/create');
+        this
+            .props
+            .router
+            .push('/create');
     }
 }
