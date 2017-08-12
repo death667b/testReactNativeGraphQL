@@ -2,9 +2,9 @@ import React from 'react';
 import {View, TextInput, Button, Image, Text} from 'react-native';
 import {withRouter} from 'react-router-native';
 import {graphql} from 'react-apollo';
-import gqp from 'graphql-tag';
+import gql from 'graphql-tag';
 
-export default class CreatePage extends React.Component {
+class CreatePage extends React.Component {
 
     state = {
         description: '',
@@ -23,21 +23,25 @@ export default class CreatePage extends React.Component {
     }
 
     render() {
+        console.log('sdvlskfv df vbdf b dfv df vd v router')
         return (
             <View>
-                <TextInput
+                  <TextInput
                     style={this.textStyle}
                     onChangeText={(text) => this.setState({description: text})}
-                    placeholder={'Description'}/>
+                    placeholder={'Description'}/> 
                 <TextInput
                     style={this.textStyle}
                     onChangeText={(text) => this.setState({imageURL: text})}
-                    placeholder={'Image URL'}/> {this.renderImage()}
-                {this.renderButton()}
+                    placeholder={'Image URL'}/> 
+                <Button title={'Go Back'} onPress={this.handleGoBack} />
+                {this.renderImage()} 
+                {this.renderButton()}  
             </ View>
         )
     }
 
+    
     renderImage = () => {
         if (this.state.imageURL) {
             return (<Image
@@ -56,7 +60,27 @@ export default class CreatePage extends React.Component {
         return null;
     }
 
+    handleGoBack = () => {
+        this.props.history.push('/');
+    }
+
     handlePost = () => {
-        // stub - complete later
+        const {description, imageURL} = this.state;
+        this.props.mutate({variables: {description, imageURL}})
+            .then(() => {
+                this.props.history.push('/');
+            })
     }
 }
+
+const addMutation = gql`
+  mutation addPost($description: String!, $imageURL: String!) {
+    createPost(description: $description, imageUrl: $imageURL) {
+      id
+      description
+      imageUrl
+    }
+  }
+`
+
+export default withRouter(graphql(addMutation)(CreatePage));
