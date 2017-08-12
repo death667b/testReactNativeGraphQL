@@ -10,7 +10,7 @@ export default class Post extends React.Component {
     styleComponent = {
         flex: 1,
         width: 150,
-        height: 150
+        height: 150,
     }
 
     render() {
@@ -18,9 +18,7 @@ export default class Post extends React.Component {
             <View style={this.styleComponent}>
                 <Image
                     style={this.styleComponent}
-                    source={{
-                    uri: this.props.post.imageUrl
-                }}/>
+                    source={{uri: this.props.post.imageUrl}} />
                 <Text>{this.props.post.description}</Text>
             </ View>
         )
