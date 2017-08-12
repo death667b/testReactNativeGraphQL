@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import ApolloClient, {createNetworkInterface} from 'apollo-client';
 import {ApolloProvider} from 'react-apollo';
-import {NativeRouter, Route, Switch} from 'react-router-native';
+import {MemoryRouter, Route, Switch} from 'react-router-native';
 import ListPage from './components/ListPage';
 import CreatePage from './components/CreatePage';
 
@@ -21,12 +21,12 @@ export default class App extends React.Component {
     render() {
         return (
             <ApolloProvider client={client}>
-                <NativeRouter>
+                <MemoryRouter>
                     <Switch>
-                    <Route path='/' component={ListPage} />
-                    <Route path='/create' component={CreatePage} />
+                        <Route exact path='/' component={ListPage} />
+                        <Route path='/create' component={CreatePage} />
                     </ Switch>
-                </ NativeRouter>
+                </ MemoryRouter>
             </ ApolloProvider>
         )
     }
