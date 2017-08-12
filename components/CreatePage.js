@@ -15,6 +15,11 @@ class CreatePage extends React.Component {
         borderWidth: 1,
     }
 
+    imageStyle ={
+        height: 200,
+        width: 200,
+    }
+
     render() {
         return (
             <View>
@@ -39,7 +44,7 @@ class CreatePage extends React.Component {
             return (
                 <Image 
                     source={{ uri: this.state.imageURL }}
-                    style={{ width: 200, height: 200 }}
+                    style={ this.imageStyle }
                 />
 
             )
