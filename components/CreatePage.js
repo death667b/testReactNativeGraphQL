@@ -2,7 +2,7 @@ import React from 'react';
 import {View, TextInput, Button, Image, Text} from 'react-native';
 import {withRouter} from 'react-router-native';
 
-class CreatePage extends React.Component {
+export default class CreatePage extends React.Component {
 
     state = {
         description: '',
