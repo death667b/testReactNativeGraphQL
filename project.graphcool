@@ -1,20 +1,13 @@
 # project: cj68ly79e4bxr01084hnjvhtw
-# version: 1
+# version: 2
 
-
-###########################################################################
-# `User` and `File` are generated and have special characteristics.
-# You can read about them in the documentation:
-# https://www.graph.cool/docs/reference/schema/system-artifacts-uhieg2shio/
-###########################################################################
-
-type User {
+type User implements Node {
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
 }
 
-type File {
+type File implements Node {
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -25,13 +18,10 @@ type File {
   url: String! @isUnique
 }
 
-
-###########################################################################
-# You can easily add custom definitions, `Tweet` below is an example.
-# If you want to add `Tweet` to your schema,
-# remove the below comments and run `graphcool push`.
-###########################################################################
-
-# type Tweet {
-#   text: String!
-# }
+type Post implements Node {
+  id: ID! @isUnique
+  description: String!
+  imageUrl: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
