@@ -25,12 +25,13 @@ class ListPage extends React.Component {
         if (this.props.data.loading) {
             return (<Text>Loading...</ Text>);
         }
-
+        
         return (
             <View>
                 <ScrollView>
                     <View style={this.viewStyle}>
-                        {this.props.data.allPosts.reverse().map((post) => 
+                        <Text>Lists</Text>
+                         {this.props.data.allPosts.map((post) =>
                             <Post key={post.id} post={post} />
                         )}
                     </ View>
@@ -41,10 +42,7 @@ class ListPage extends React.Component {
     }
 
     createPost = () => {
-        this
-            .props
-            .router
-            .push('/create');
+        this.props.history.push('/create');
     }
 }
 
